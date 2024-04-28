@@ -8,7 +8,11 @@ from doctor.models import is_doctor
 def login_view(request):
 
     if request.method == "GET":
-        
+        if request.user.is_authenticated:
+            messages.add_message(
+                request, constants.ERROR, "Há um usúario logado. ação bloqueada."
+            )
+            return redirect("/patient/home")        
         return render(request, "login.html")
 
     elif request.method == "POST":
@@ -37,10 +41,6 @@ def logout(request):
 
 
 """ 
-if request.user.is_authenticated:
-            messages.add_message(
-                request, constants.ERROR, "Há um usúario logado. ação bloqueada."
-            )
-            return redirect("/patient/home")
+
 
 """

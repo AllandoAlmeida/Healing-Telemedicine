@@ -39,7 +39,7 @@ ALLOWED_HOSTS = []
 RENDER_EXTERNAL_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME')
 
 if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS += [RENDER_EXTERNAL_HOSTNAME, "0.0.0.0"]
+    ALLOWED_HOSTS += [RENDER_EXTERNAL_HOSTNAME]
 
 # Application definition
 
@@ -116,7 +116,7 @@ if DATABASE_URL:
     DATABASES['default'].update(db_from_env)
     DEBUG = False
 
-if not DEBUG:
+if 'RENDER' in os.environ:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
