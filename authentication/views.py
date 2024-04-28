@@ -38,9 +38,3 @@ def login_view(request):
 def logout(request):
     auth.logout(request)
     return redirect("/authentication/login")
-
-
-""" 
-
-
-"""

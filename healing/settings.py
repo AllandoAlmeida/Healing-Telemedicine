@@ -109,12 +109,10 @@ DATABASES = {
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL:
-    DEBUG = False
     db_from_env = dj_database_url.config(
         default=DATABASE_URL, conn_max_age=500, ssl_require=True
     )
     DATABASES['default'].update(db_from_env)
-    DEBUG = False
 
 if 'RENDER' in os.environ:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

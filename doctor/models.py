@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 def is_doctor(user):
-    return MedicalData.objects.filter(user=user).exists()
+  return MedicalData.objects.filter(user=user, specialty__isnull=False).exists()
 
 # Create your models here.
 class Specialties(models.Model):    
